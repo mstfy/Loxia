@@ -13,11 +13,12 @@ public struct Mapper {
         self.content = content
     }
     
-    func parseFor(keys: [KeyType]) throws -> Any {
-        return try keys.reduce(content) { (content: Any, keyType: KeyType) throws -> Any in
+    func parse(for keys: [KeyType]) throws -> Any {
+        
+        func extract(from: Any, forKey keyType: KeyType) throws -> Any {
             switch keyType.key {
-            case .index(let index):
-                guard let array = content as? [Any] else {
+            case let .index(index):
+                guard let array = from as? [Any] else {
                     throw MapperError.typeMismatch(type(of: content))
                 }
                 
@@ -27,8 +28,8 @@ public struct Mapper {
                 
                 return array[index]
                 
-            case .key(let key):
-                guard let dictionary = content as? [String: Any] else {
+            case let .key(key):
+                guard let dictionary = from as? [String: Any] else {
                     throw MapperError.typeMismatch(type(of: content))
                 }
                 
@@ -38,6 +39,35 @@ public struct Mapper {
                 
                 return obj
             }
+        }
+        
+        if keys.count == 0 {
+            return content
+        } else if (keys.count == 1) {
+            return try extract(from: content, forKey: keys[0])
+        }
+        
+        return try keys.reduce(content, extract(from:forKey:))
+    }
+}
+
+extension Mapper {
+    public func get<T: JSONType>(_ keys: KeyType...) throws -> T {
+        return try T(json: try T.cast(from: try parse(for: keys)))
+    }
+    
+    public func get<T: JSONType>(_ keys: KeyType...) -> T? {
+        return try? T(json: try T.cast(from: try parse(for: keys)))
+    }
+    
+    public func get<T: JSONType>(_ keys: KeyType...) throws -> [T] {
+        let value = try parse(for: keys)
+        guard let arr = value as? [Any] else {
+            throw MapperError.typeMismatch(type(of: value))
+        }
+        
+        return try arr.map {
+            try T(json: try T.cast(from: $0))
         }
     }
 }
