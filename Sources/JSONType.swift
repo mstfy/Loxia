@@ -6,8 +6,6 @@
 //
 //
 
-import Foundation
-
 public protocol JSONType {
     associatedtype RawType
     static func cast(from: Any) throws -> RawType
@@ -33,21 +31,3 @@ extension Int: JSONType {}
 extension Double: JSONType {}
 extension Float: JSONType {}
 extension Bool: JSONType {}
-
-extension URL: JSONType {
-    public init(json: String) throws {
-        guard let url = URL(string: json) else {
-            throw MapperError.typeMismatch(type(of: json))
-        }
-        
-        self = url
-    }
-
-    public static func cast(from: Any) throws -> String {
-        guard let value = from as? String else {
-            throw MapperError.typeMismatch(type(of: from))
-        }
-        
-        return value
-    }
-}
