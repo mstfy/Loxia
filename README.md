@@ -41,7 +41,7 @@ Let's assume we have following JSON:
         {
             "name": "Jack",
             "age": 21,
-            "profilePhoto": "<some url>"
+            "profilePhoto": "<some url>",
             "type": "Standard"
         },
         {
