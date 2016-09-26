@@ -14,7 +14,7 @@ extension Mapper {
     }
 }
 
-extension URL: JSONType {
+extension URL: Mappable {
     public init(json: String) throws {
         guard let url = URL(string: json) else {
             throw MapperError.typeMismatch(type(of: json))

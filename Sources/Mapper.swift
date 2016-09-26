@@ -52,15 +52,15 @@ public struct Mapper {
 }
 
 extension Mapper {
-    public func get<T: JSONType>(_ keys: KeyType...) throws -> T {
+    public func get<T: Mappable>(_ keys: KeyType...) throws -> T {
         return try T(json: try T.cast(from: try parse(for: keys)))
     }
     
-    public func get<T: JSONType>(_ keys: KeyType...) -> T? {
+    public func get<T: Mappable>(_ keys: KeyType...) -> T? {
         return try? T(json: try T.cast(from: try parse(for: keys)))
     }
     
-    public func get<T: JSONType>(_ keys: KeyType...) throws -> [T] {
+    public func get<T: Mappable>(_ keys: KeyType...) throws -> [T] {
         let value = try parse(for: keys)
         guard let arr = value as? [Any] else {
             throw MapperError.typeMismatch(type(of: value))

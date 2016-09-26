@@ -21,7 +21,7 @@ struct User: Equatable {
     }
 }
 
-extension User: JSONObjectType {
+extension User: MappableObject {
     init(json: Mapper) throws {
         name = try json.get("name")
         surname = json.get("surname")

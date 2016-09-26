@@ -6,9 +6,9 @@
 //
 //
 
-public protocol JSONObjectType: JSONType {}
+public protocol MappableObject: Mappable {}
 
-extension JSONObjectType {
+extension MappableObject {
     public static func cast(from: Any) throws -> Mapper {
         return Mapper(from)
     }

@@ -13,8 +13,8 @@
 		0185766F1D659B1200DC32CC /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0185766E1D659B1200DC32CC /* Mapper.swift */; };
 		018576711D659BB900DC32CC /* MapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018576701D659BB900DC32CC /* MapperTests.swift */; };
 		018576731D659DD100DC32CC /* MapperError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018576721D659DD100DC32CC /* MapperError.swift */; };
-		018576771D65A58E00DC32CC /* JSONType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018576761D65A58E00DC32CC /* JSONType.swift */; };
-		0185767B1D65B7AB00DC32CC /* JSONObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0185767A1D65B7AB00DC32CC /* JSONObjectType.swift */; };
+		018576771D65A58E00DC32CC /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018576761D65A58E00DC32CC /* Mappable.swift */; };
+		0185767B1D65B7AB00DC32CC /* MappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0185767A1D65B7AB00DC32CC /* MappableObject.swift */; };
 		_LinkFileRef_Loxia_via_LoxiaTests /* Loxia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Loxia" /* Loxia.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,8 +35,8 @@
 		0185766E1D659B1200DC32CC /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		018576701D659BB900DC32CC /* MapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapperTests.swift; sourceTree = "<group>"; };
 		018576721D659DD100DC32CC /* MapperError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapperError.swift; sourceTree = "<group>"; };
-		018576761D65A58E00DC32CC /* JSONType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONType.swift; sourceTree = "<group>"; };
-		0185767A1D65B7AB00DC32CC /* JSONObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONObjectType.swift; sourceTree = "<group>"; };
+		018576761D65A58E00DC32CC /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		0185767A1D65B7AB00DC32CC /* MappableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappableObject.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Loxia.xcodeproj/Configs/Project.xcconfig /* Loxia.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Loxia.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"_____Product_Loxia" /* Loxia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Loxia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,8 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				0185766C1D65999B00DC32CC /* KeyType.swift */,
-				018576761D65A58E00DC32CC /* JSONType.swift */,
-				0185767A1D65B7AB00DC32CC /* JSONObjectType.swift */,
+				018576761D65A58E00DC32CC /* Mappable.swift */,
+				0185767A1D65B7AB00DC32CC /* MappableObject.swift */,
 				018576721D659DD100DC32CC /* MapperError.swift */,
 				0185766E1D659B1200DC32CC /* Mapper.swift */,
 				01326A3D1D6B83AE007D1897 /* Mapper+Foundation.swift */,
@@ -215,8 +215,8 @@
 				01326A3E1D6B83AE007D1897 /* Mapper+Foundation.swift in Sources */,
 				018576731D659DD100DC32CC /* MapperError.swift in Sources */,
 				0185766D1D65999B00DC32CC /* KeyType.swift in Sources */,
-				0185767B1D65B7AB00DC32CC /* JSONObjectType.swift in Sources */,
-				018576771D65A58E00DC32CC /* JSONType.swift in Sources */,
+				0185767B1D65B7AB00DC32CC /* MappableObject.swift in Sources */,
+				018576771D65A58E00DC32CC /* Mappable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

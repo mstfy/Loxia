@@ -6,13 +6,13 @@
 //
 //
 
-public protocol JSONType {
+public protocol Mappable {
     associatedtype RawType
     static func cast(from: Any) throws -> RawType
     init(json: RawType) throws
 }
 
-extension JSONType {
+extension Mappable {
     public static func cast(from: Any) throws -> Self {
         guard let value = from as? Self else {
             throw MapperError.typeMismatch(type(of: from))
@@ -26,8 +26,8 @@ extension JSONType {
     }
 }
 
-extension String: JSONType {}
-extension Int: JSONType {}
-extension Double: JSONType {}
-extension Float: JSONType {}
-extension Bool: JSONType {}
+extension String: Mappable {}
+extension Int: Mappable {}
+extension Double: Mappable {}
+extension Float: Mappable {}
+extension Bool: Mappable {}
