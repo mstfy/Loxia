@@ -8,7 +8,7 @@
 
 ## Getting Started
 
-Loxia requires swift 3 (xcode 8 beta 6)
+Loxia requires swift 3
 
 ### Installation with Carthage
 
@@ -41,7 +41,7 @@ Let's assume we have following JSON:
         {
             "name": "Jack",
             "age": 21,
-            "profilePhoto": "<some url>"
+            "profilePhoto": "<some url>",
             "type": "Standard"
         },
         {
@@ -75,7 +75,7 @@ let firstUsersName: String = try mapper.get("users", 0, "name")
 let firstUsersProfilePhoto: String? = mapper.get("users", 0, "profilePhoto")
 ```
 
-So what's going on here?. Here is we call `Mapper`'s `get` method. There is bunch of `get` methods implemented in `Mapper`. Swift chooses right versions according to type that we are getting from json. This is called type inference. 
+So what's going on here?. Here is we call `Mapper`'s `get` method. There are bunch of `get` methods implemented in `Mapper`. Swift chooses right versions according to type that we are getting from json. This is called type inference. 
 
 ### Parsing objects
 
@@ -90,12 +90,12 @@ struct User {
 }
 ```
 
-Now we want to get array of `User` instances. To parse `User` at once `User` must be conform the `JSONType` protocol.
+Now we want to get array of `User` instances. To parse `User` at once `User` must be conform the `MappableObject` protocol.
 
 ``` swift
 import Loxia
 
-extension User: JSONObjectType {
+extension User: MappableObject {
     init(json: Mapper) throws {
         name = try json.get("name")
         age = try json.get("age")
@@ -130,10 +130,10 @@ struct User {
 }
 ```
 
-To convert json string to `UserType` It needs to conform `JSONType` protocol.
+To convert json string to `UserType` It needs to conform `Mappable` protocol.
 
 ``` swift
-extension UserType: JSONType {
+extension UserType: Mappable {
     public init(json: String) throws {
         switch json {
             case "standard": self = .standard
@@ -167,7 +167,7 @@ Loxia supports decoding all standard JSON types, like:
 It also supprts `URL` out of the box. For the `Date` you have to write it yourself. A sample implementation would look like this:
 
 ``` swift
-extension Date: JSONType {
+extension Date: Mappable {
     public init(json: String) throws {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY/mm/dd"
@@ -197,7 +197,7 @@ let mapper = Mapper(json)
 print(mapper.json)
 ```
 
-If you get `Ambigious reference to member 'get'` then It means your type doesn't conform required `JSONType` or `JSONObjectType` protocol. Or swift's type inference can't infere which `get` method to call.
+If you get `Ambigious reference to member 'get'` then It means your type doesn't conform required `Mappable` or `MappableObject` protocol. Or swift's type inference can't infere which `get` method to call.
 
 
 
