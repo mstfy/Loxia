@@ -14,40 +14,35 @@ public struct Mapper {
     }
     
     func parse(for keys: [KeyType]) throws -> Any {
-        
-        func extract(from: Any, forKey keyType: KeyType) throws -> Any {
-            switch keyType.key {
+        var content = self.content
+
+        for key in keys {
+            switch key.key {
             case let .index(index):
-                guard let array = from as? [Any] else {
+                guard let array = content as? [Any] else {
                     throw MapperError.typeMismatch(type(of: content))
                 }
-                
+
                 guard index < array.count else {
-                    throw MapperError.notFound(keyType)
+                    throw MapperError.notFound(key)
                 }
-                
-                return array[index]
-                
+
+                content = array[index]
+
             case let .key(key):
-                guard let dictionary = from as? [String: Any] else {
+                guard let dictionary = content as? [String: Any] else {
                     throw MapperError.typeMismatch(type(of: content))
                 }
-                
+
                 guard let obj = dictionary[key] else {
-                    throw MapperError.notFound(keyType)
+                    throw MapperError.notFound(key)
                 }
-                
-                return obj
+
+                content = obj
             }
         }
         
-        if keys.count == 0 {
-            return content
-        } else if (keys.count == 1) {
-            return try extract(from: content, forKey: keys[0])
-        }
-        
-        return try keys.reduce(content, extract(from:forKey:))
+        return content
     }
 }
 
